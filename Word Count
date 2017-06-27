@@ -1,1 +1,32 @@
+#mapper.py
+
+#!/usr/bin
+import sys
+for line in sys.stdin:
+    for word in line.strip().split():
+        print "%s\t%d" %(word,1)
+
+
+#reducer.py
+
+
+#!/usr/bin
+import sys
+current_word = None
+current_count = 1
+for line in sys.stdin:
+    word,count = line.strip().split('\t')
+if current_word:
+   if word == current_word:
+       current_count += 1
+   else:
+       current_count = 1
+word = current_word
+
+if current_word > 1:
+   print "%s\t%s" %(current_word,current_count)
+   
+
+
+
 
